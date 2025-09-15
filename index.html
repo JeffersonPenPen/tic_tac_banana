@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-jogo">
+        <h1 id="titulo">Jogo da Velha</h1>
+
+        <!-- Seleção jogadores -->
+        <div id="telaConfiguracao" class="tela-configuracao">
+            <h2>Selecione os Jogadores</h2>
+
+            <div class="entrada-jogador jogador-x">
+                <label for="nomeJogadorX">Nome do Jogador X:</label>
+                <input type="text" id="nomeJogadorX" placeholder="Digite o nome do jogador X" maxlength="20">
+            </div>
+
+            <div class="entrada-jogador jogador-o">
+                <label for="nomeJogadorO">Nome do Jogador O:</label>
+                <input type="text" id="nomeJogadorO" placeholder="Digite o nome do jogador O" maxlength="20">
+            </div>
+
+            <button id="botaoIniciar" class="botao-iniciar">Iniciar Jogo</button>
+        </div>
+
+        <div id="telaJogo" class="tela-jogo escondido">
+            <!-- PLacar -->
+            <div class="placar">
+                <div class="pontuacao-jogador">
+                    <div id="exibicaoNomeX" class="nome-jogador jogador-x">Jogador X</div>
+                    <div id="pontosX" class="pontos">0</div>
+                </div>
+                <div class="pontuacao-jogador">
+                    <div id="exibicaoNomeO" class="nome-jogador jogador-o">Jogador O</div>
+                    <div id="pontosO" class="pontos">0</div>
+                </div>
+            </div>
+
+            <div id="status" class="status">
+                Vez do <span id="jogadorAtual" class="vez-jogador-x">Jogador X</span>
+            </div>
+
+            <!-- Tabuleiro -->
+            <div class="tabuleiro" id="tabuleiro">
+                <button class="celula" data-posicao="0"></button>
+                <button class="celula" data-posicao="1"></button>
+                <button class="celula" data-posicao="2"></button>
+                <button class="celula" data-posicao="3"></button>
+                <button class="celula" data-posicao="4"></button>
+                <button class="celula" data-posicao="5"></button>
+                <button class="celula" data-posicao="6"></button>
+                <button class="celula" data-posicao="7"></button>
+                <button class="celula" data-posicao="8"></button>
+            </div>
+
+            <div class="controles-jogo">
+                <button id="botaoNovoJogo" class="botao-controle">Nova Partida</button>
+                <button id="botaoTrocarJogadores" class="botao-controle botao-secundario">Alterar Jogadores</button>
+            </div>
+        </div>
+
+        <!-- Resultado -->
+        <div id="modalResultado" class="modal escondido">
+            <div class="conteudo-modal">
+                <h3 id="tituloResultado">Fim de Jogo!</h3>
+                <p id="mensagemResultado"></p>
+
+                <div class="placar-modal">
+                    <h4>Placar Atual:</h4>
+                    <div id="placarAtual"></div>
+                </div>
+
+                <div class="botoes-modal">
+                    <button id="botaoJogarNovamente" class="botao-modal botao-primario">Jogar Novamente</button>
+                    <button id="botaoTrocarNomes" class="botao-modal botao-secundario">Trocar Jogadores</button>
+                    <!-- Easter Egg -->
+                    <button id="botaoBananaMode" class="botao-modal botao-banana escondido">🍌 Banana Mode</button>
+                    <button id="botaoModoNormal" class="botao-modal botao-normal escondido">Modo Normal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

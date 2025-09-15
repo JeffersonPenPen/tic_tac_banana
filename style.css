@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container-jogo {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Tela de configuração */
+.tela-configuracao {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.entrada-jogador {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.entrada-jogador label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.entrada-jogador input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.entrada-jogador.jogador-x input {
+    border-color: #62b9ff;
+}
+
+.entrada-jogador.jogador-x input:focus {
+    border-color: #62b9ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(11, 7, 224, 0.3);
+}
+
+.entrada-jogador.jogador-o input {
+    border-color: #9d59dd;
+}
+
+.entrada-jogador.jogador-o input:focus {
+    border-color: #9d59dd;
+    outline: none;
+    box-shadow: 0 0 5px rgba(230, 4, 199, 0.3);
+}
+
+.botao-iniciar {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+.botao-iniciar:hover {
+    background-color: #229954;
+}
+
+/* Tela do jogo */
+.tela-jogo {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Placar */
+.placar {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 25px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.pontuacao-jogador {
+    text-align: center;
+}
+
+.nome-jogador {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.nome-jogador.jogador-x {
+    color: #62b9ff;
+}
+
+.nome-jogador.jogador-o {
+    color: #9d59dd;
+}
+
+.pontos {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+.celula img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+
+body.banana-mode-ativo {
+    background-color: #f1c40f;
+}
+
+.status {
+    font-size: 18px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: #333;
+}
+
+.vez-jogador-x {
+    color: #62b9ff;
+}
+
+.vez-jogador-o {
+    color: #9d59dd;
+}
+
+
+.tabuleiro {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    width: 315px;
+    height: 315px;
+    max-width: 100%;
+    margin: 0 auto 30px;
+    background-color: #34495e;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.celula {
+    background-color: white;
+    border: none;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.celula:hover {
+    background-color: #ecf0f1;
+}
+
+.celula.jogada-x {
+    background-color: #62b9ff;
+    color: white;
+}
+
+.celula.jogada-o {
+    background-color: #9d59dd;
+    color: white;
+}
+
+.celula.vencedora {
+    background-color: #2ecc71 !important;
+    color: white !important;
+    animation: piscar 0.8s infinite;
+}
+
+@keyframes piscar {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.controles-jogo {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.botao-controle {
+    background-color: #9d59dd;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.botao-controle:hover {
+    background-color: #2980b9;
+}
+
+.botao-controle.botao-secundario {
+    background-color: #2980b9;
+}
+
+.botao-controle.botao-secundario:hover {
+    background-color: #9d59dd;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.conteudo-modal {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.conteudo-modal h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.conteudo-modal p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.placar-modal {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.placar-modal h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.placar-modal div {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.botoes-modal {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.botao-modal {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.botao-modal.botao-primario {
+    background-color: #27ae60;
+    color: white;
+}
+
+.botao-modal.botao-primario:hover {
+    background-color: #4f7215;
+}
+
+.botao-modal.botao-secundario {
+    background-color: #27ae60;
+    color: white;
+}
+
+.botao-modal.botao-secundario:hover {
+    background-color: #4f7215;
+}
+
+/* NOVOS: Botões Banana Mode */
+.botao-modal.botao-banana {
+    background-color: #f39c12;
+    color: white;
+}
+
+.botao-modal.botao-banana:hover {
+    background-color: #e67e22;
+}
+
+.botao-modal.botao-normal {
+    background-color: #34495e;
+    color: white;
+}
+
+.botao-modal.botao-normal:hover {
+    background-color: #2c3e50;
+}
+
+/* Classe para esconder elementos */
+.escondido {
+    display: none !important;
+}
+
+/* Responsividade */
+@media (max-width: 350px) {
+    .container-jogo {
+        padding: 15px;
+        margin: 5px;
+        width: calc(100% - 10px);
+    }
+    h1 {
+        font-size: 2em;
+    }
+    .tabuleiro {
+        width: 225px;
+        height: 225px;
+    }
+    .celula {
+        font-size: 24px;
+    }
+    .controles-jogo {
+        flex-direction: column;
+    }
+    .botao-controle {
+        width: 100%;
+    }
+    .botoes-modal {
+        flex-direction: column;
+    }
+    .botao-modal {
+        width: 100%;
+    }
+}
