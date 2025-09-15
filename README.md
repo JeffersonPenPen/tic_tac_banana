@@ -10,6 +10,10 @@ Nessa versão, X é substituído pela imagem de uma banana (`x.png`) e O é subs
 
 As imagens são autoajustáveis, limitadas a 90% do grid em que são inseridas, portanto, idealmente, qualquer png com fundo transparente é válido.
 
+## Nomes de Variáveis e Funções
+
+A não ser em casos estritamente obrigatórios devido a linguagem de programação, os nomes de variáveis e funções foram propositalmente modelados em português do Brasil. Essa escolha foi orientada pela possibilidade de uso do jogo em ambientes educacionais de introdução a programação ou lógica, o que facilita o entendimento dos alunos e aumenta a aplicabilidade do código por professores, sem a necessidade de grandes mudanças e ainda mantendo a mesma lógica e orientação que seria utilizada caso a nomenclatura fosse totalmente em inglês.
+
 ---
 
 ## Guia Rápido do Jogo
