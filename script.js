@@ -6,15 +6,17 @@ let tabuleiro = ['', '', '', '', '', '', '', '', ''];
 let jogoAtivo = true;
 let pontosX = 0;
 let pontosO = 0;
-
 // BANANA MODE
 let bananaMode = false;
 let primeiraPartidaFinalizada = false;
-
 let telaConfiguracao = document.getElementById('telaConfiguracao');
 let telaJogo = document.getElementById('telaJogo');
 let modalResultado = document.getElementById('modalResultado');
 
+// Alterna quem comeca o jogo
+let proximoInicio = 'X';
+
+// Eventos
 document.addEventListener('DOMContentLoaded', function() {
     configurarEventos();
 });
@@ -23,11 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
 function configurarEventos() {
     // Botão iniciar jogo
     document.getElementById('botaoIniciar').addEventListener('click', iniciarJogo);
-    
     // Botões de controle
     document.getElementById('botaoNovoJogo').addEventListener('click', novaPartida);
     document.getElementById('botaoTrocarJogadores').addEventListener('click', voltarConfiguracoes);
-    
     // Botões do modal
     document.getElementById('botaoJogarNovamente').addEventListener('click', function() {
         fecharModal();
@@ -37,15 +37,13 @@ function configurarEventos() {
         fecharModal();
         voltarConfiguracoes();
     });
-    
-    // NOVOS BOTÕES BANANA MODE
+    // Botões Banana Mode
     document.getElementById('botaoBananaMode').addEventListener('click', function() {
         ativarBananaMode();
     });
     document.getElementById('botaoModoNormal').addEventListener('click', function() {
         ativarModoNormal();
     });
-    
     // Cliques no tabuleiro
     let celulas = document.querySelectorAll('.celula');
     celulas.forEach(function(celula) {
@@ -54,28 +52,24 @@ function configurarEventos() {
             fazerJogada(posicao);
         });
     });
-    
     // Fechar modal
     modalResultado.addEventListener('click', function(evento) {
         if (evento.target === modalResultado) {
             fecharModal();
         }
     });
-    
     // Enter nos campos de nome
     document.getElementById('nomeJogadorX').addEventListener('keypress', function(evento) {
         if (evento.key === 'Enter') {
             document.getElementById('nomeJogadorO').focus();
         }
     });
-    
     document.getElementById('nomeJogadorO').addEventListener('keypress', function(evento) {
         if (evento.key === 'Enter') {
             iniciarJogo();
         }
     });
 }
-
 // BANANA MODE
 function ativarBananaMode() {
     bananaMode = true;
@@ -93,22 +87,43 @@ function ativarModoNormal() {
     novaPartida();
 }
 
-// Iniciar o jogo
+// iniciar o jogo
 function iniciarJogo() {
     let inputX = document.getElementById('nomeJogadorX').value.trim();
     let inputO = document.getElementById('nomeJogadorO').value.trim();
-    
+
     nomeJogadorX = inputX || 'Jogador X';
     nomeJogadorO = inputO || 'Jogador O';
-    
+
     document.getElementById('exibicaoNomeX').textContent = nomeJogadorX;
     document.getElementById('exibicaoNomeO').textContent = nomeJogadorO;
-    
+
     telaConfiguracao.classList.add('escondido');
     telaJogo.classList.remove('escondido');
-    
+
     resetarJogo();
     atualizarPlacar();
+    atualizarStatus();
+    // Define quem começa a primeira partida
+    proximoInicio = proximoInicio === 'X' ? 'O' : 'X';
+}
+
+function novaPartida() {
+    resetarJogo();
+    // Alterna quem começa a próxima partida
+    proximoInicio = proximoInicio === 'X' ? 'O' : 'X';
+}
+
+function resetarJogo() {
+    tabuleiro = ['', '', '', '', '', '', '', '', ''];
+    jogoAtivo = true;
+    document.querySelectorAll('.celula').forEach((c) => {
+        c.textContent = '';
+        c.innerHTML = '';
+        c.classList.remove('jogada-x', 'jogada-o', 'vencedora');
+    });
+
+    jogadorAtual = proximoInicio;
     atualizarStatus();
 }
 
@@ -218,7 +233,7 @@ function mostrarResultado(titulo, mensagem) {
     let simboloX = bananaMode ? '🍌' : 'X';
     let simboloO = bananaMode ? '🍎' : 'O';
     
-    document.getElementById('placarAtual').innerHTML = 
+    document.getElementById('placarAtual').innerHTML =
         '<div>' + nomeJogadorX + ' (' + simboloX + '): ' + pontosX + ' vitórias</div>' +
         '<div>' + nomeJogadorO + ' (' + simboloO + '): ' + pontosO + ' vitórias</div>';
     
@@ -245,24 +260,6 @@ function fecharModal() {
 function atualizarPlacar() {
     document.getElementById('pontosX').textContent = pontosX;
     document.getElementById('pontosO').textContent = pontosO;
-}
-
-function novaPartida() {
-    resetarJogo();
-    atualizarStatus();
-}
-
-function resetarJogo() {
-    tabuleiro = ['', '', '', '', '', '', '', '', ''];
-    jogadorAtual = 'X';
-    jogoAtivo = true;
-    
-    let celulas = document.querySelectorAll('.celula');
-    celulas.forEach(function(celula) {
-        celula.textContent = '';
-        celula.innerHTML = '';
-        celula.className = 'celula';
-    });
 }
 
 function voltarConfiguracoes() {
